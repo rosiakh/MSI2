@@ -58,10 +58,6 @@ class Knn:
         return sortedVotes[0][0]
 
 
-    def printProgress(self, text, percent):
-        sys.stdout.write("\r" + text + " progress: %.2f%%" % percent)
-        sys.stdout.flush()
-
     def runPrediction(self, trainingSet, testSet, k):
         predictions = []
         for x in range(len(testSet)):

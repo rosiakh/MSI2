@@ -10,12 +10,11 @@ if not os.path.exists('Plots'):
     os.makedirs('Plots')
 
 split = 0.6
-nrOfExperiments = 1
-kList = list(range(3, 6, 1))
+nrOfExperiments = 3
+kList = list(range(3, 30, 2))
 
 for dataset in ['simple', 'three_gauss']:
-	for datasize in [100, 500]:
-		print('Bare k-NN:')
+	for datasize in [100, 500, 1000, 10000]:
 
 		knn_instance = knn.Knn()
 		accuracies = {}
@@ -23,20 +22,18 @@ for dataset in ['simple', 'three_gauss']:
 		for k in kList:
 			accuracies[k] = []
 			for i in range(nrOfExperiments):
-				print('Running experiment nr ' + repr(i + 1) + '/' + repr(nrOfExperiments) + ' for k = ' + repr(k))
+				print('Running experiment nr ' + repr(i + 1) + '/' + repr(nrOfExperiments) + ' (k=' + repr(k) + ', datasize=' + repr(datasize) + ', bare)')
 				accuracy = knn_instance.run(
 					k, 
 					split=split, 
 					dataFilename='data.' + dataset + '.train.' + repr(datasize), 
-					scatterPlotFilename='bare_simple_' + repr(datasize), 
-					withGeneratedTestSet=True)
+					scatterPlotFilename='bare_simple_' + repr(datasize) + '_k_' + repr(k), 
+					withGeneratedTestSet=(i==(nrOfExperiments-1)))
 				print("Accuracy: %.2f%%" % round(accuracy, 2))
 				accuracies[k].append(accuracy)
 			averageAccuracies1[k] = float(sum(accuracies[k]))/float(nrOfExperiments)
 			print('Average accuracy: ' + repr(round(averageAccuracies1[k], 2)) + '%')
 
-
-		print('Weighted k-NN:')
 
 		weightedKnn_instance = weighted_knn.WeightedKnn()
 		accuracies = {}
@@ -44,13 +41,13 @@ for dataset in ['simple', 'three_gauss']:
 		for k in kList:
 			accuracies[k] = []
 			for i in range(nrOfExperiments):
-				print('Running experiment nr ' + repr(i + 1) + '/' + repr(nrOfExperiments) + ' for k = ' + repr(k))
+				print('Running experiment nr ' + repr(i + 1) + '/' + repr(nrOfExperiments) + ' (k=' + repr(k) + ', datasize=' + repr(datasize) + ', weighted)')
 				accuracy = weightedKnn_instance.run(
 					k, 
 					split=split, 
 					dataFilename='data.' + dataset + '.train.' + repr(datasize), 
-					scatterPlotFilename='weighted_simple_' + repr(datasize), 
-					withGeneratedTestSet=True)
+					scatterPlotFilename='weighted_simple_' + repr(datasize) + '_k_' + repr(k), 
+					withGeneratedTestSet=(i==(nrOfExperiments-1)))
 				print("Accuracy: %.2f%%" % round(accuracy, 2))
 				accuracies[k].append(accuracy)
 			averageAccuracies2[k] = float(sum(accuracies[k]))/float(nrOfExperiments)
