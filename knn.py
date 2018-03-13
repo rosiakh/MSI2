@@ -141,6 +141,7 @@ class Knn:
 
         plt.savefig('Plots/' + scatterPlotFilename + '.png', bbox_inches='tight')
         #plt.show()
+        plt.close(fig)
         return
 
 
