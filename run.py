@@ -27,7 +27,7 @@ for dataset in ['simple', 'three_gauss']:
 					k, 
 					split=split, 
 					dataFilename='data.' + dataset + '.train.' + repr(datasize), 
-					scatterPlotFilename='bare_simple_' + repr(datasize) + '_k_' + repr(k), 
+					scatterPlotFilename='bare_' + dataset + '_' + repr(datasize) + '_k_' + repr(k), 
 					withGeneratedTestSet=(i==(nrOfExperiments-1)))
 				print("Accuracy: %.2f%%" % round(accuracy, 2))
 				accuracies[k].append(accuracy)
@@ -46,7 +46,7 @@ for dataset in ['simple', 'three_gauss']:
 					k, 
 					split=split, 
 					dataFilename='data.' + dataset + '.train.' + repr(datasize), 
-					scatterPlotFilename='weighted_simple_' + repr(datasize) + '_k_' + repr(k), 
+					scatterPlotFilename='weighted_' + dataset + '_' + repr(datasize) + '_k_' + repr(k), 
 					withGeneratedTestSet=(i==(nrOfExperiments-1)))
 				print("Accuracy: %.2f%%" % round(accuracy, 2))
 				accuracies[k].append(accuracy)
