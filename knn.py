@@ -106,6 +106,8 @@ class Knn:
                     gcolors.append('deepskyblue')
                 elif genPredictions[i] == '2':
                     gcolors.append('lightcoral')
+                elif genPredictions[i] == '3':
+                    gcolors.append('gainsboro')
                 else:
                     gcolors.append('springgreen')
             plt.scatter(gx, gy, c=gcolors, alpha=0.2)
@@ -119,6 +121,8 @@ class Knn:
                 colors.append('blue')
             elif trainingInstance[2] == '2':
                 colors.append('red')
+            elif trainingInstance[2] == '3':
+                colors.append('black')
             else:
                 colors.append('green')    
         plt.scatter(x, y, c=colors)
@@ -131,6 +135,8 @@ class Knn:
                 colors1.append('deepskyblue')
             elif predictions[i] == '2':
                 colors1.append('lightcoral')
+            elif predictions[i] == '3':
+                colors1.append('darkgrey')
             else:
                 colors1.append('springgreen')
         plt.scatter(x1, y1, c=colors1, marker='^', alpha=1.0)

@@ -13,7 +13,7 @@ split = 0.6
 nrOfExperiments = 3
 kList = list(range(3, 30, 2))
 
-for dataset in ['simple', 'three_gauss']:
+for dataset in ['circles']:
 	for datasize in [100, 500, 1000, 10000]:
 
 		knn_instance = knn.Knn()
